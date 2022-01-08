@@ -1,0 +1,15 @@
+$font-sizes: (
+  h1: 54px,
+  h2: 44px,
+  h3: 38px,
+  h4: 28px,
+  h5: 24px,
+  body: 20px,
+  small: 16px,
+  caption: 14px,
+  mini: 12px,
+);
+
+@function font-size($size) {
+  @return map-get($font-sizes, $size);
+}

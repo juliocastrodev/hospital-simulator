@@ -1,0 +1,7 @@
+@import 'colors.scss';
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: color(background);
+}
