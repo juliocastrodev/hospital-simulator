@@ -12,13 +12,13 @@ export class DrugEffectRuleBuilder {
   }
 
   whenProvided(...drugs: Drug[]) {
-    this.built.providePreconditions = [...drugs]
+    this.built.providePreconditions = drugs
 
     return this
   }
 
   whenDeprived(...drugs: Drug[]) {
-    this.built.deprivePreconditions = [...drugs]
+    this.built.deprivePreconditions = drugs
 
     return this
   }
@@ -30,12 +30,12 @@ export class DrugEffectRuleBuilder {
   }
 
   build() {
-    this.ensureAllRequiredPropertiesAreDefined()
+    this.ensureAllNecessaryPropertiesAreDefined()
 
     return new DrugEffectRule(this.built as DrugEffectRuleCreateParams)
   }
 
-  private ensureAllRequiredPropertiesAreDefined() {
+  private ensureAllNecessaryPropertiesAreDefined() {
     const propertiesToCheck: (keyof DrugEffectRuleCreateParams)[] = ['applicationResult']
 
     const incompleteProperties = propertiesToCheck.filter((prop) => !this.built[prop])

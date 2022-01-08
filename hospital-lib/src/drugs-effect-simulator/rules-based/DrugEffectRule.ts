@@ -28,4 +28,10 @@ export class DrugEffectRule {
         deprivePreconditions.every((drug) => !drugsToProvide.includes(drug)))
     )
   }
+
+  static hasBeenApplied(
+    ruleApplicationResult: ReturnType<DrugEffectRule['apply']>
+  ): ruleApplicationResult is PatientState {
+    return Boolean(ruleApplicationResult)
+  }
 }

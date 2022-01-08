@@ -41,11 +41,7 @@ export class PatientsRegisterBuilder {
   }
 
   private changeAll(to: PatientState) {
-    patientStatesFrom(this.built)
-      .filter((patientState) => patientState !== to)
-      .forEach((patientStateDifferentFromTarget) =>
-        this.change({ from: patientStateDifferentFromTarget, to })
-      )
+    patientStatesFrom(this.built).forEach((patientState) => this.change({ from: patientState, to }))
 
     return this
   }

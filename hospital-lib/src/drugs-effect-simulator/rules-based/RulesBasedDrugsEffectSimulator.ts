@@ -49,17 +49,11 @@ export class RulesBasedDrugsEffectSimulator implements DrugsEffectsSimulator {
   simulate(patientState: PatientState, drugsToProvide: Drug[]): PatientState {
     const appliedRulesResults = RulesBasedDrugsEffectSimulator.RULES.map((rule) =>
       rule.apply(patientState, drugsToProvide)
-    ).filter(this.ruleThatHasBeenApplied)
+    ).filter(DrugEffectRule.hasBeenApplied)
 
     if (!appliedRulesResults.length) return patientState
 
     return appliedRulesResults.reduce(this.higherPrecedence)
-  }
-
-  private ruleThatHasBeenApplied(
-    ruleApplicationResult: PatientState | undefined
-  ): ruleApplicationResult is PatientState {
-    return Boolean(ruleApplicationResult)
   }
 
   private higherPrecedence(s1: PatientState, s2: PatientState) {
