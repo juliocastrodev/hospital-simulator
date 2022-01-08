@@ -1,2 +1,2 @@
-export {Quarantine} from './quarantine';
-export {PatientsRegister} from './patientsRegister';
+export { Quarantine } from './quarantine/Quarantine'
+export { PatientsRegister } from './quarantine/PatientsRegister'
