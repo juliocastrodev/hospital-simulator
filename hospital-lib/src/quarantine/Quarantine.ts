@@ -1,10 +1,12 @@
-import { DrugsEffectSimulator } from '../drugs-effect-simulator/DrugsEffectSimulator'
+import { DrugsEffectsSimulator } from '../drugs-effect-simulator/DrugsEffectSimulator'
+import { RulesBasedDrugsEffectSimulator } from '../drugs-effect-simulator/rules-based/RulesBasedDrugsEffectSimulator'
 import { Drug } from '../shared/Drug'
-import { PatientState } from '../shared/PatientState'
-import { PatientsRegister } from './PatientsRegister'
+import { PatientsRegister, patientStatesFrom } from './PatientsRegister'
+import { PatientsRegisterBuilder } from './PatientsRegisterBuilder'
 
 export class Quarantine {
-  private static readonly DRUGS_EFFECT_SIMULATOR: DrugsEffectSimulator = 'todo' as any
+  private static readonly DRUGS_EFFECT_SIMULATOR: DrugsEffectsSimulator =
+    new RulesBasedDrugsEffectSimulator()
 
   private drugs: Drug[] = []
 
@@ -15,24 +17,18 @@ export class Quarantine {
   }
 
   wait40Days() {
-    const updatedPatientsRegister: PatientsRegister = {}
+    const builder = new PatientsRegisterBuilder().from(this.patientsRegister)
 
-    Object.entries(this.patientsRegister).forEach((register) => {
-      const [patientState, numberOfPatients] = register as [PatientState, number]
+    patientStatesFrom(this.patientsRegister).forEach((patientState) => {
+      const nextState = Quarantine.DRUGS_EFFECT_SIMULATOR.simulate(patientState, this.drugs)
 
-      const nextState = Quarantine.DRUGS_EFFECT_SIMULATOR.simulate({
-        patientState,
-        drugsToProvide: this.drugs,
-      })
-      const numberOfPatientsWithAlreadyThatState = updatedPatientsRegister[nextState] ?? 0
-
-      updatedPatientsRegister[nextState] = numberOfPatients + numberOfPatientsWithAlreadyThatState
+      builder.change({ from: patientState, to: nextState })
     })
 
-    this.patientsRegister = updatedPatientsRegister
+    this.patientsRegister = builder.build()
   }
 
-  report(): PatientsRegister {
+  report() {
     return this.patientsRegister
   }
 }

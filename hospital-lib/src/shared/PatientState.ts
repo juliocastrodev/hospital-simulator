@@ -1,6 +1,6 @@
 export enum PatientState {
   FEVER = 'F',
-  HEALTHY = 'H',
+  HEALTH = 'H',
   DIABETES = 'D',
   TUBERCULOSIS = 'T',
   DEAD = 'X',

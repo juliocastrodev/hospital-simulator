@@ -1,143 +1,122 @@
-import { Expect, Setup, Test, TestFixture } from 'alsatian'
+import { Expect, Test, TestFixture } from 'alsatian'
+import { Drug } from '../shared/Drug'
+import { PatientState } from '../shared/PatientState'
+import { ALL_ALIVE_BUT_WITH_DISEASES } from './fixtures/patientsRegisters'
+import { PatientsRegisterBuilder } from './PatientsRegisterBuilder'
 import { Quarantine } from './Quarantine'
 
 @TestFixture()
 export class QuarantineTest {
-  private quarantine: Quarantine
+  @Test()
+  report_beforeTreatment_patientsStayTheSame() {
+    const quarantine = new Quarantine(ALL_ALIVE_BUT_WITH_DISEASES)
 
-  @Setup
-  public setup() {
-    // The responsibility of the Quarantine object is to simulate diseases on a group of patients.
-    // It is initialized with a list of patients' health status, separated by a comma.
-    // Each health status is described by one or more characters
-    // (in the test below, we will always have only one disease / patient)
-    // The characters mean:
-    // H : Healthy
-    // F : Fever
-    // D : Diabetes
-    // T : Tuberculosis
+    const report = quarantine.report()
 
-    this.quarantine = new Quarantine({
-      F: 1,
-      H: 2,
-      D: 3,
-      T: 1,
-      X: 0,
-    })
-    // Quarantine provides medicines to the patients, but can not target a specific group of patient.
-    // The same medicines are always given to all the patients.
-
-    // Then Quarantine can provide a report that gives the number of patients that have the given disease.
-    // X means Dead
+    Expect(report).toEqual(ALL_ALIVE_BUT_WITH_DISEASES)
   }
 
   @Test()
-  public beforeTreatment(): void {
-    // diabetics die without insulin
-    Expect(this.quarantine.report()).toEqual({
-      F: 1,
-      H: 2,
-      D: 3,
-      T: 1,
-      X: 0,
-    })
+  report_afterTreatmentWithoutDrugs_patientsStayTheSameButDiabeticsDie() {
+    const quarantine = new Quarantine(ALL_ALIVE_BUT_WITH_DISEASES)
+    quarantine.wait40Days()
+    const expectedReport = new PatientsRegisterBuilder()
+      .from(ALL_ALIVE_BUT_WITH_DISEASES)
+      .decease(PatientState.DIABETES)
+      .build()
+
+    const report = quarantine.report()
+
+    Expect(report).toEqual(expectedReport)
   }
 
   @Test()
-  public noTreatment(): void {
-    this.quarantine.wait40Days()
-    // diabetics die without insulin
-    Expect(this.quarantine.report()).toEqual({
-      F: 1,
-      H: 2,
-      D: 0,
-      T: 1,
-      X: 3,
-    })
+  report_afterTreatmentWithAspirine_patientsWithFeverGetCuredAndTheRestStaysTheSameButDiabeticsDie() {
+    const quarantine = new Quarantine(ALL_ALIVE_BUT_WITH_DISEASES)
+    quarantine.setDrugs([Drug.ASPIRIN])
+    quarantine.wait40Days()
+    const expectedReport = new PatientsRegisterBuilder()
+      .from(ALL_ALIVE_BUT_WITH_DISEASES)
+      .cure(PatientState.FEVER)
+      .decease(PatientState.DIABETES)
+      .build()
+
+    const report = quarantine.report()
+
+    Expect(report).toEqual(expectedReport)
   }
 
   @Test()
-  public aspirin(): void {
-    this.quarantine.setDrugs(['As'])
-    this.quarantine.wait40Days()
-    // aspirin cure Fever
-    Expect(this.quarantine.report()).toEqual({
-      F: 0,
-      H: 3,
-      D: 0,
-      T: 1,
-      X: 3,
-    })
+  report_afterTreatmentWithAntibiotic_patientsWithTubercuolsisGetCuredAndTheRestStaysTheSameButDiabeticsDie() {
+    const quarantine = new Quarantine(ALL_ALIVE_BUT_WITH_DISEASES)
+    quarantine.setDrugs([Drug.ANTIBIOTIC])
+    quarantine.wait40Days()
+    const expectedReport = new PatientsRegisterBuilder()
+      .from(ALL_ALIVE_BUT_WITH_DISEASES)
+      .cure(PatientState.TUBERCULOSIS)
+      .decease(PatientState.DIABETES)
+      .build()
+
+    const report = quarantine.report()
+
+    Expect(report).toEqual(expectedReport)
   }
 
   @Test()
-  public antibiotic(): void {
-    this.quarantine.setDrugs(['An'])
-    this.quarantine.wait40Days()
-    // antibiotic cure Tuberculosis
-    // but healthy people catch Fever if mixed with insulin.
-    Expect(this.quarantine.report()).toEqual({
-      F: 1,
-      H: 3,
-      D: 0,
-      T: 0,
-      X: 3,
-    })
+  report_afterTreatmentWithInsulin_patientsStayTheSame() {
+    const quarantine = new Quarantine(ALL_ALIVE_BUT_WITH_DISEASES)
+    quarantine.setDrugs([Drug.INSULIN])
+    quarantine.wait40Days()
+
+    const report = quarantine.report()
+
+    Expect(report).toEqual(ALL_ALIVE_BUT_WITH_DISEASES)
   }
 
   @Test()
-  public insulin(): void {
-    this.quarantine.setDrugs(['I'])
-    this.quarantine.wait40Days()
-    // insulin prevent diabetic subject from dying, does not cure Diabetes,
-    Expect(this.quarantine.report()).toEqual({
-      F: 1,
-      H: 2,
-      D: 3,
-      T: 1,
-      X: 0,
-    })
+  report_afterTreatmentWithAntibioticAndInsulin_patientsWithTuberculosisGetCuredAndTheRestStaysTheSameButHealthyPatientsCatchFever() {
+    const quarantine = new Quarantine(ALL_ALIVE_BUT_WITH_DISEASES)
+    quarantine.setDrugs([Drug.ANTIBIOTIC, Drug.INSULIN])
+    quarantine.wait40Days()
+    const expectedReport = new PatientsRegisterBuilder()
+      .from(ALL_ALIVE_BUT_WITH_DISEASES)
+      .change({ from: PatientState.HEALTH, to: PatientState.FEVER })
+      .cure(PatientState.TUBERCULOSIS)
+      .build()
+
+    const report = quarantine.report()
+
+    Expect(report).toEqual(expectedReport)
   }
 
   @Test()
-  public antibioticPlusInsulin(): void {
-    this.quarantine.setDrugs(['An', 'I'])
-    this.quarantine.wait40Days()
-    // if insulin is mixed with antibiotic, healthy people catch Fever
-    Expect(this.quarantine.report()).toEqual({
-      F: 3,
-      H: 1,
-      D: 3,
-      T: 0,
-      X: 0,
-    })
+  report_afterTreatmentWithParacetamol_patientsWithFeverGetCuredAndTheRestStaysTheSameButDiabeticsDie() {
+    const quarantine = new Quarantine(ALL_ALIVE_BUT_WITH_DISEASES)
+    quarantine.setDrugs([Drug.PARACETAMOL])
+    quarantine.wait40Days()
+    const expectedReport = new PatientsRegisterBuilder()
+      .from(ALL_ALIVE_BUT_WITH_DISEASES)
+      .cure(PatientState.FEVER)
+      .decease(PatientState.DIABETES)
+      .build()
+
+    const report = quarantine.report()
+
+    Expect(report).toEqual(expectedReport)
   }
 
   @Test()
-  public paracetamol(): void {
-    this.quarantine.setDrugs(['P'])
-    this.quarantine.wait40Days()
-    // paracetamol heals fever
-    Expect(this.quarantine.report()).toEqual({
-      F: 0,
-      H: 3,
-      D: 0,
-      T: 1,
-      X: 3,
-    })
-  }
+  report_afterTreatmentWithParacetamolAndAspirin_allPatiensDie() {
+    const quarantine = new Quarantine(ALL_ALIVE_BUT_WITH_DISEASES)
+    quarantine.setDrugs([Drug.PARACETAMOL, Drug.ASPIRIN])
+    quarantine.wait40Days()
+    const expectedReport = new PatientsRegisterBuilder()
+      .from(ALL_ALIVE_BUT_WITH_DISEASES)
+      .deceaseAll()
+      .build()
 
-  @Test()
-  public paracetamolAndAspirin(): void {
-    this.quarantine.setDrugs(['P', 'As'])
-    this.quarantine.wait40Days()
-    // paracetamol kills subject if mixed with aspirin
-    Expect(this.quarantine.report()).toEqual({
-      F: 0,
-      H: 0,
-      D: 0,
-      T: 0,
-      X: 7,
-    })
+    const report = quarantine.report()
+
+    Expect(report).toEqual(expectedReport)
   }
 }
