@@ -9,7 +9,7 @@ export class CardComponent {
   @Input() hasShadow = false
 
   @HostBinding('class')
-  get cardClasses() {
+  get classes() {
     const classes: string[] = []
 
     if (this.hasShadow) classes.push('shadow')

@@ -1,0 +1,15 @@
+@import 'colors.scss';
+@import 'fontSizes.scss';
+@import 'distances.scss';
+
+app-card {
+  span {
+    color: color('black', 'secondary');
+    font-weight: bold;
+  }
+
+  h5 {
+    color: color('black', 'secondary');
+    font-weight: normal;
+  }
+}

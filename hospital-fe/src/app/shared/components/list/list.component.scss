@@ -2,23 +2,49 @@
 @import 'colors.scss';
 @import 'fontSizes.scss';
 
-li {
-  display: flex;
-  gap: distance('xs');
-  align-items: center;
+:host {
+  &.bullet {
+    li {
+      display: flex;
+      gap: distance('xs');
+      align-items: center;
 
-  div {
-    width: font-size(mini);
-    height: font-size(mini);
-    background-color: color('purple', 'primary');
-    border-radius: 50%;
+      &::before {
+        content: '';
+        width: font-size('mini');
+        height: font-size('mini');
+        background-color: color('purple', 'primary');
+        border-radius: 50%;
+      }
+
+      p {
+        color: color('black', 'primary');
+      }
+
+      span {
+        color: color('black', 'secondary');
+      }
+    }
   }
 
-  p {
-    color: color('black', 'primary');
-  }
+  &.inline {
+    ul,
+    li {
+      display: flex;
+      gap: distance('xs');
+      align-items: center;
 
-  span {
-    color: color('black', 'secondary');
+      p {
+        &::after {
+          content: ':';
+        }
+        color: color('purple', 'primary');
+        font-weight: bold;
+      }
+
+      span {
+        font-size: font-size('body');
+      }
+    }
   }
 }

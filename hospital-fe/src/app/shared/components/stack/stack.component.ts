@@ -16,7 +16,7 @@ export class StackComponent {
   @Input() align: Alignment = 'CENTER'
 
   @HostBinding('class')
-  get cardClasses() {
+  get classes() {
     const classes: string[] = []
 
     if (this.allowWrap) classes.push('wrap')

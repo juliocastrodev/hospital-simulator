@@ -1,0 +1,23 @@
+<app-card [hasShadow]="true">
+  <app-stack>
+    <span>#129</span>
+    <span>{{ myDate | date: 'short' }}</span>
+  </app-stack>
+
+  <app-stack gap="XL" [allowWrap]="true">
+    <section>
+      <h5>Patients</h5>
+      <app-list type="INLINE" [items]="foo"></app-list>
+    </section>
+
+    <section>
+      <h5>Drugs</h5>
+      <app-list type="INLINE" [items]="foo"></app-list>
+    </section>
+
+    <section>
+      <h5>Results</h5>
+      <app-list type="INLINE" [items]="foo"></app-list>
+    </section>
+  </app-stack>
+</app-card>

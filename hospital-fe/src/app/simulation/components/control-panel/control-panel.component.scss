@@ -1,3 +1,8 @@
 app-stack > app-panel-list {
   flex: 1 0 auto;
 }
+
+section:last-child {
+  width: 100%;
+  text-align: center;
+}

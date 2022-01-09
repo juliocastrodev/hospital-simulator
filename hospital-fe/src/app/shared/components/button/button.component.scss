@@ -8,8 +8,14 @@ button {
   &.primary {
     color: color('white', 'primary');
     background-color: color('purple', 'primary');
-    padding: distance('xs');
+    padding: distance('xs') distance('l');
     border-radius: distance('xl');
+
+    &:hover {
+      background-color: color('white', 'primary');
+      color: color('purple', 'primary');
+      outline: 1px solid color('purple', 'primary');
+    }
   }
 
   &.secondary {
