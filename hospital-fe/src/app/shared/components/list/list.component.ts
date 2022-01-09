@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { ListItem } from './ListItem'
+import { ListItem } from '../../types/ListItem'
 
 @Component({
   selector: 'app-list',

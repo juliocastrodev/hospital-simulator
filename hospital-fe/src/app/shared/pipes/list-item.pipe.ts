@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core'
-import { ListItem } from '../components/list/ListItem'
+import { ListItem } from '../types/ListItem'
 
 @Pipe({ name: 'listitem' })
 export class ListItemPipe implements PipeTransform {

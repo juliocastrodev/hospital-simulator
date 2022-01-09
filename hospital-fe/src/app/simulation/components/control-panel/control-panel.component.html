@@ -1,25 +1,27 @@
 <app-card>
-  <section>
-    <h3>Control Panel</h3>
-  </section>
+  <app-stack direction="VERTICAL" gap="S" align="START">
+    <section>
+      <h3>Control Panel</h3>
+    </section>
 
-  <section>
-    <app-card [hasShadow]="true">
-      <h4>Patients</h4>
-      <app-list [items]="patients | listitem"></app-list>
-      <app-button>Fetch patients</app-button>
-    </app-card>
-  </section>
+    <section>
+      <app-stack gap="XL" [allowWrap]="true">
+        <app-card [hasShadow]="true">
+          <h4>Patients</h4>
+          <app-list [items]="patients | listitem"></app-list>
+          <app-button>Fetch patients</app-button>
+        </app-card>
 
-  <section>
-    <app-card [hasShadow]="true">
-      <h4>Drugs</h4>
-      <app-list [items]="drugs | listitem"></app-list>
-      <app-button>Fetch drugs</app-button>
-    </app-card>
-  </section>
+        <app-card [hasShadow]="true">
+          <h4>Drugs</h4>
+          <app-list [items]="drugs | listitem"></app-list>
+          <app-button>Fetch drugs</app-button>
+        </app-card>
+      </app-stack>
+    </section>
 
-  <section>
-    <app-button type="SECONDARY">Simulate</app-button>
-  </section>
+    <section>
+      <app-button type="SECONDARY">Simulate</app-button>
+    </section>
+  </app-stack>
 </app-card>

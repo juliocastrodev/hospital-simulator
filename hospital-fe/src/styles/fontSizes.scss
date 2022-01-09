@@ -1,12 +1,12 @@
 $font-sizes: (
-  h1: 44px,
-  h2: 38px,
-  h3: 28px,
-  h4: 24px,
-  h5: 20px,
-  body: 16px,
-  small: 12px,
-  mini: 8px,
+  'h1': 44px,
+  'h2': 38px,
+  'h3': 28px,
+  'h4': 24px,
+  'h5': 20px,
+  'body': 16px,
+  'small': 12px,
+  'mini': 8px,
 );
 
 @function font-size($size) {

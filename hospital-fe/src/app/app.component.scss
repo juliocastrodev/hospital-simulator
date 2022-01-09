@@ -2,27 +2,13 @@
 @import 'distances.scss';
 @import 'fontSizes.scss';
 
-:host {
+:host > app-stack {
   background-color: color('white', 'secondary');
   min-height: 100vh;
   padding: distance('m');
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: distance('l');
-
-  header {
+  h1 {
     color: color('purple', 'primary');
-  }
-
-  main {
-    width: 100%;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: distance('xl');
   }
 
   footer {

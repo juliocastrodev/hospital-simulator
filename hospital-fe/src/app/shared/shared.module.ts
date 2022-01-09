@@ -4,8 +4,9 @@ import { ButtonComponent } from './components/button/button.component'
 import { BrowserModule } from '@angular/platform-browser'
 import { ListComponent } from './components/list/list.component'
 import { ListItemPipe } from './pipes/list-item.pipe'
+import { StackComponent } from './components/stack/stack.component'
 
-const components = [CardComponent, ButtonComponent, ListComponent]
+const components = [CardComponent, ButtonComponent, ListComponent, StackComponent]
 
 const pipes = [ListItemPipe]
 

@@ -1,13 +1,15 @@
 @import 'colors.scss';
 @import 'distances.scss';
 
-app-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: distance('s');
+h4 {
+  color: color('black', 'secondary');
+}
 
-  h4 {
-    color: color('black', 'secondary');
+app-card {
+  flex: 1 0 auto;
+
+  app-button {
+    display: block;
+    text-align: end;
   }
 }

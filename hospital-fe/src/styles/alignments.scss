@@ -1,0 +1,10 @@
+$alignments: (
+  'start': start,
+  'end': end,
+  'center': center,
+  'spaced': space-between,
+);
+
+@function alignment($name) {
+  @return map-get($alignments, $name);
+}

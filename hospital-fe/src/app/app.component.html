@@ -1,15 +1,15 @@
-<header>
-  <h1>Hospital Simulator</h1>
-</header>
+<app-stack direction="VERTICAL" gap="L">
+  <header>
+    <h1>Hospital Simulator</h1>
+  </header>
 
-<main>
-  <section>
-    <app-control-panel></app-control-panel>
-  </section>
+  <main>
+    <app-stack gap="XL" [allowWrap]="true" justify="CENTER">
+      <app-control-panel></app-control-panel>
 
-  <section>
-    <app-history></app-history>
-  </section>
-</main>
+      <app-history></app-history>
+    </app-stack>
+  </main>
 
-<footer>Developed by Julio César Castro López</footer>
+  <footer>Developed by Julio César Castro López</footer>
+</app-stack>
