@@ -1,28 +1,25 @@
 <app-card>
-  <h2>Control Panel</h2>
+  <section>
+    <h3>Control Panel</h3>
+  </section>
 
-  <div>
-    <section class="left">
-      <h3>Patients</h3>
-      <ul>
-        <li>Patient #1</li>
-        <li>Patient #2</li>
-      </ul>
-    </section>
-
-    <section class="right">
-      <h3>Drugs</h3>
-      <ul>
-        <li>Drug #1</li>
-        <li>Drug #2</li>
-        <li>Drug #3</li>
-      </ul>
-    </section>
-
-    <section class="bottom">
+  <section>
+    <app-card [hasShadow]="true">
+      <h4>Patients</h4>
+      <app-list [items]="patients | listitem"></app-list>
       <app-button>Fetch patients</app-button>
-      <app-button>Simulate</app-button>
+    </app-card>
+  </section>
+
+  <section>
+    <app-card [hasShadow]="true">
+      <h4>Drugs</h4>
+      <app-list [items]="drugs | listitem"></app-list>
       <app-button>Fetch drugs</app-button>
-    </section>
-  </div>
+    </app-card>
+  </section>
+
+  <section>
+    <app-button type="SECONDARY">Simulate</app-button>
+  </section>
 </app-card>

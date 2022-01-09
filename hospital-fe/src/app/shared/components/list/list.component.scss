@@ -1,0 +1,24 @@
+@import 'distances.scss';
+@import 'colors.scss';
+@import 'fontSizes.scss';
+
+li {
+  display: flex;
+  gap: distance('xs');
+  align-items: center;
+
+  div {
+    width: font-size(mini);
+    height: font-size(mini);
+    background-color: color('purple', 'primary');
+    border-radius: 50%;
+  }
+
+  p {
+    color: color('black', 'primary');
+  }
+
+  span {
+    color: color('black', 'secondary');
+  }
+}

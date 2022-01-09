@@ -1,3 +1,8 @@
-<button>
+<button
+  [ngClass]="{
+    primary: type === 'PRIMARY',
+    secondary: type === 'SECONDARY'
+  }"
+>
   <ng-content></ng-content>
 </button>

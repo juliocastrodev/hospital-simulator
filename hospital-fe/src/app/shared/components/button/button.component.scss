@@ -2,12 +2,21 @@
 @import 'distances.scss';
 
 button {
-  color: color('white', 'primary');
-  background-color: color('purple', 'primary');
-  padding: distance('s');
-  border-radius: distance('m');
   border: none;
   outline: none;
+
+  &.primary {
+    color: color('white', 'primary');
+    background-color: color('purple', 'primary');
+    padding: distance('xs');
+    border-radius: distance('xl');
+  }
+
+  &.secondary {
+    color: color('purple', 'secondary');
+    background-color: color('white', 'primary');
+    font-weight: bold;
+  }
 
   &:hover {
     cursor: pointer;

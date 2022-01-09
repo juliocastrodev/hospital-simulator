@@ -1,33 +1,13 @@
 @import 'colors.scss';
 @import 'distances.scss';
 
-div {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:
-    'left right'
-    'bottom bottom';
-  column-gap: distance('m');
-  row-gap: distance('l');
+app-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: distance('s');
 
-  h3 {
+  h4 {
     color: color('black', 'secondary');
-  }
-
-  .left {
-    grid-area: left;
-  }
-
-  .right {
-    grid-area: right;
-    justify-self: end;
-  }
-
-  .bottom {
-    grid-area: bottom;
-    display: flex;
-    flex-wrap: wrap;
-    gap: distance('m');
-    justify-content: space-between;
   }
 }

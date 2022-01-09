@@ -23,14 +23,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: distance('xl');
-
-    & > section:first-child {
-      min-width: 30%;
-    }
-
-    & > section:last-child {
-      min-width: 40%;
-    }
   }
 
   footer {

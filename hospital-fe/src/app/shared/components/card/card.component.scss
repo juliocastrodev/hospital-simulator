@@ -1,6 +1,7 @@
 @import 'colors.scss';
 @import 'distances.scss';
 @import 'fontSizes.scss';
+@import 'shadows.scss';
 
 :host {
   display: block;
@@ -8,4 +9,8 @@
   background-color: color('white', 'primary');
   padding: distance('m');
   border-radius: distance('m');
+
+  &.shadow {
+    box-shadow: shadow('light');
+  }
 }
