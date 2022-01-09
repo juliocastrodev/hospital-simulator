@@ -1,15 +1,3 @@
-@import 'colors.scss';
-@import 'distances.scss';
-
-h4 {
-  color: color('black', 'secondary');
-}
-
-app-card {
+app-stack > app-panel-list {
   flex: 1 0 auto;
-
-  app-button {
-    display: block;
-    text-align: end;
-  }
 }

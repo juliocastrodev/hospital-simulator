@@ -6,17 +6,17 @@
 
     <section>
       <app-stack gap="XL" [allowWrap]="true">
-        <app-card [hasShadow]="true">
-          <h4>Patients</h4>
-          <app-list [items]="patients | listitem"></app-list>
-          <app-button>Fetch patients</app-button>
-        </app-card>
+        <app-panel-list
+          title="Patients"
+          [items]="patients | listitem"
+          button="Fetch patients"
+        ></app-panel-list>
 
-        <app-card [hasShadow]="true">
-          <h4>Drugs</h4>
-          <app-list [items]="drugs | listitem"></app-list>
-          <app-button>Fetch drugs</app-button>
-        </app-card>
+        <app-panel-list
+          title="Drugs"
+          [items]="drugs | listitem"
+          button="Fetch drugs"
+        ></app-panel-list>
       </app-stack>
     </section>
 
