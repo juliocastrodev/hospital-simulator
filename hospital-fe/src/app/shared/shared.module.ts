@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
-import { TitleComponent } from './title/title.component'
-import { CardComponent } from './card/card.component'
+import { TitleComponent } from './components/title/title.component'
+import { CardComponent } from './components/card/card.component'
 
 const components = [TitleComponent, CardComponent]
 
@@ -8,4 +8,4 @@ const components = [TitleComponent, CardComponent]
   declarations: [...components],
   exports: [...components],
 })
-export class ComponentsModule {}
+export class SharedModule {}
