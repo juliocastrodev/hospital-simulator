@@ -1,15 +1,38 @@
 $font-sizes: (
-  h1: 54px,
-  h2: 44px,
-  h3: 38px,
-  h4: 28px,
-  h5: 24px,
-  body: 20px,
-  small: 16px,
-  caption: 14px,
-  mini: 12px,
+  h1: 64px,
+  h2: 56px,
+  h3: 42px,
+  h4: 32px,
+  h5: 30px,
+  body: 28px,
+  small: 24px,
+  mini: 20px,
 );
 
 @function font-size($size) {
   @return map-get($font-sizes, $size);
+}
+
+h1 {
+  font-size: font-size(h1);
+}
+
+h2 {
+  font-size: font-size(h2);
+}
+
+h3 {
+  font-size: font-size(h3);
+}
+
+h4 {
+  font-size: font-size(h4);
+}
+
+h5 {
+  font-size: font-size(h5);
+}
+
+p {
+  font-size: font-size(body);
 }

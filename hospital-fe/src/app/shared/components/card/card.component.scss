@@ -4,9 +4,8 @@
 
 :host {
   display: block;
-  color: color(text, primary);
-  background-color: color(light);
-  padding: distance(m);
-  border-radius: distance(m);
-  font-size: font-size(body);
+  color: color('black', 'primary');
+  background-color: color('white', 'primary');
+  padding: distance('m');
+  border-radius: distance('m');
 }

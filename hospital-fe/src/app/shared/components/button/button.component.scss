@@ -1,0 +1,15 @@
+@import 'colors.scss';
+@import 'distances.scss';
+
+button {
+  color: color('white', 'primary');
+  background-color: color('purple', 'primary');
+  padding: distance('s');
+  border-radius: distance('m');
+  border: none;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

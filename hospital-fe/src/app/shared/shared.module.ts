@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core'
-import { TitleComponent } from './components/title/title.component'
 import { CardComponent } from './components/card/card.component'
+import { ButtonComponent } from './components/button/button.component'
 
-const components = [TitleComponent, CardComponent]
+const components = [CardComponent, ButtonComponent]
 
 @NgModule({
   declarations: [...components],

@@ -2,18 +2,27 @@
   <h2>Control Panel</h2>
 
   <div>
-    <h3>Patients</h3>
-    <p>Patient #1</p>
-    <p>Patient #2</p>
-    <button>Fetch patients</button>
-  </div>
-  <div>
-    <h3>Drugs</h3>
-    <p>Drug #1</p>
-    <p>Drug #2</p>
-    <p>Drug #3</p>
-    <button>Fetch drugs</button>
-  </div>
+    <section class="left">
+      <h3>Patients</h3>
+      <ul>
+        <li>Patient #1</li>
+        <li>Patient #2</li>
+      </ul>
+    </section>
 
-  <button>Simulate</button>
+    <section class="right">
+      <h3>Drugs</h3>
+      <ul>
+        <li>Drug #1</li>
+        <li>Drug #2</li>
+        <li>Drug #3</li>
+      </ul>
+    </section>
+
+    <section class="bottom">
+      <app-button>Fetch patients</app-button>
+      <app-button>Simulate</app-button>
+      <app-button>Fetch drugs</app-button>
+    </section>
+  </div>
 </app-card>
