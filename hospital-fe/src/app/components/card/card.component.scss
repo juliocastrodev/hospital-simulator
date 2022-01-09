@@ -1,0 +1,12 @@
+@import 'colors.scss';
+@import 'distances.scss';
+@import 'fontSizes.scss';
+
+:host {
+  display: block;
+  color: color(text, primary);
+  background-color: color(light);
+  padding: distance(m);
+  border-radius: distance(m);
+  font-size: font-size(body);
+}
