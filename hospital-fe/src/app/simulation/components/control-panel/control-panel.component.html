@@ -1,27 +1,27 @@
 <app-card>
   <app-stack direction="VERTICAL" gap="S" align="START">
     <section>
-      <h3>Control Panel</h3>
+      <h3>{{ 'SIMULATION.CONTROL_PANEL.TITLE' | translate }}</h3>
     </section>
 
     <section>
       <app-stack gap="XL" [allowWrap]="true">
         <app-panel-list
-          title="Patients"
+          [title]="'SIMULATION.CONTROL_PANEL.PATIENTS.TITLE' | translate"
           [items]="patients | listitem"
-          button="Fetch patients"
+          [button]="'SIMULATION.CONTROL_PANEL.PATIENTS.BUTTON' | translate"
         ></app-panel-list>
 
         <app-panel-list
-          title="Drugs"
+          [title]="'SIMULATION.CONTROL_PANEL.PATIENTS.TITLE' | translate"
           [items]="drugs | listitem"
-          button="Fetch drugs"
+          [button]="'SIMULATION.CONTROL_PANEL.PATIENTS.TITLE' | translate"
         ></app-panel-list>
       </app-stack>
     </section>
 
     <section>
-      <app-button type="SECONDARY">Simulate</app-button>
+      <app-button type="SECONDARY"> {{ 'SIMULATION.CONTROL_PANEL.BUTTON' | translate }}</app-button>
     </section>
   </app-stack>
 </app-card>

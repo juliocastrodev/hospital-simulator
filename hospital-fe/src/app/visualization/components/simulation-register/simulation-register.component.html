@@ -6,17 +6,17 @@
 
   <app-stack gap="XL" [allowWrap]="true">
     <section>
-      <h5>Patients</h5>
+      <h5>{{ 'VISUALIZATION.SIMULATION_REGISTER.PATIENTS.TITLE' | translate }}</h5>
       <app-list type="INLINE" [items]="foo"></app-list>
     </section>
 
     <section>
-      <h5>Drugs</h5>
+      <h5>{{ 'VISUALIZATION.SIMULATION_REGISTER.DRUGS.TITLE' | translate }}</h5>
       <app-list type="INLINE" [items]="foo"></app-list>
     </section>
 
     <section>
-      <h5>Results</h5>
+      <h5>{{ 'VISUALIZATION.SIMULATION_REGISTER.RESULTS.TITLE' | translate }}</h5>
       <app-list type="INLINE" [items]="foo"></app-list>
     </section>
   </app-stack>
