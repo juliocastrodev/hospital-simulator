@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { ListItem } from '../../../shared/types/ListItem'
+import { ListItem } from '../../../shared/components/list/ListItem'
 
 @Component({
   selector: 'app-panel-list',

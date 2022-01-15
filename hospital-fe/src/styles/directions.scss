@@ -1,0 +1,8 @@
+$directions: (
+  'horizontal': row,
+  'vertical': column,
+);
+
+@function direction($name) {
+  @return map-get($directions, $name);
+}

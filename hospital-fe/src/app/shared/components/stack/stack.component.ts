@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core'
-import { Alignment } from '../../types/Alignment'
-import { Direction } from '../../types/Direction'
-import { Distance } from '../../types/Distance'
+import { Alignment } from './Alignment'
+import { Direction } from './Direction'
+import { Distance } from './Distance'
 
 @Component({
   selector: 'app-stack',
@@ -10,8 +10,8 @@ import { Distance } from '../../types/Distance'
 })
 export class StackComponent {
   @Input() allowWrap = false
-  @Input() direction: Direction = 'HORIZONTAL'
   @Input() gap?: Distance
+  @Input() direction: Direction = 'HORIZONTAL'
   @Input() justify: Alignment = 'SPACED'
   @Input() align: Alignment = 'CENTER'
 
@@ -20,8 +20,8 @@ export class StackComponent {
     const classes: string[] = []
 
     if (this.allowWrap) classes.push('wrap')
-    if (this.direction === 'VERTICAL') classes.push('vertical')
     if (this.gap) classes.push(`gap-${this.gap.toLowerCase()}`)
+    classes.push(`direction-${this.direction.toLowerCase()}`)
     classes.push(`justify-${this.justify.toLowerCase()}`)
     classes.push(`align-${this.align.toLowerCase()}`)
 

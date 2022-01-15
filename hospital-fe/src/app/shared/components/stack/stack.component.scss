@@ -1,4 +1,5 @@
 @import 'distances.scss';
+@import 'directions.scss';
 @import 'alignments.scss';
 
 :host {
@@ -10,13 +11,15 @@
     flex-wrap: wrap;
   }
 
-  &.vertical {
-    flex-direction: column;
-  }
-
   @each $distance, $value in $distances {
     &.gap-#{$distance} {
       gap: $value;
+    }
+  }
+
+  @each $direction, $value in $directions {
+    &.direction-#{$direction} {
+      flex-direction: $value;
     }
   }
 
@@ -24,9 +27,7 @@
     &.justify-#{$alignment} {
       justify-content: $value;
     }
-  }
 
-  @each $alignment, $value in $alignments {
     &.align-#{$alignment} {
       align-items: $value;
     }

@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core'
-import { ListItem } from '../../types/ListItem'
-import { ListType } from '../../types/ListType'
+import { ListItem } from './ListItem'
+import { ListType } from './ListType'
 
 @Component({
   selector: 'app-list',
@@ -16,7 +16,6 @@ export class ListComponent {
     const classes: string[] = []
 
     classes.push(this.type.toLowerCase())
-    classes.push('hola')
 
     return classes
   }
