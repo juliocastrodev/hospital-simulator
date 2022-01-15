@@ -8,14 +8,19 @@
       <app-stack gap="XL" [allowWrap]="true">
         <app-panel-list
           [title]="'SIMULATION.CONTROL_PANEL.PATIENTS.TITLE' | translate"
-          [items]="patients | listitem"
+          [items]="
+            patients
+              | objectTranslateIds: { category: 'PATIENTS', consider: 'KEYS' }
+              | translateObject: 'KEYS'
+              | listItem
+          "
           [button]="'SIMULATION.CONTROL_PANEL.PATIENTS.BUTTON' | translate"
         ></app-panel-list>
 
         <app-panel-list
-          [title]="'SIMULATION.CONTROL_PANEL.PATIENTS.TITLE' | translate"
-          [items]="drugs | listitem"
-          [button]="'SIMULATION.CONTROL_PANEL.PATIENTS.TITLE' | translate"
+          [title]="'SIMULATION.CONTROL_PANEL.DRUGS.TITLE' | translate"
+          [items]="drugs | listTranslateIds: 'DRUGS' | translateList | listItem"
+          [button]="'SIMULATION.CONTROL_PANEL.DRUGS.BUTTON' | translate"
         ></app-panel-list>
       </app-stack>
     </section>

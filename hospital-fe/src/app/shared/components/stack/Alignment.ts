@@ -1,1 +1,1 @@
-export type Alignment = 'START' | 'END' | 'CENTER' | 'SPACED'
+export type Alignment = 'START' | 'END' | 'CENTER' | 'SPACED' | 'STRETCHED'

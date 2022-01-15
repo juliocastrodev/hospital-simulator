@@ -1,4 +1,6 @@
 import { Component } from '@angular/core'
+import { Drug } from '../../../shared/domain/Drug'
+import { PatientsRegister } from '../../../shared/domain/PatientsRegister'
 
 @Component({
   selector: 'app-control-panel',
@@ -6,15 +8,12 @@ import { Component } from '@angular/core'
   styleUrls: ['./control-panel.component.scss'],
 })
 export class ControlPanelComponent {
-  patients = {
-    Diabéticos: 23,
-    'Con fiebre': 100,
-    Sanos: 33,
-    Muertos: 10,
+  patients: PatientsRegister = {
+    D: 23,
+    F: 100,
+    H: 33,
+    X: 10,
   }
 
-  drugs = {
-    Aspirina: 10,
-    Insulina: 33,
-  }
+  drugs: Drug[] = ['As', 'I']
 }

@@ -1,23 +1,41 @@
 <app-card [hasShadow]="true">
   <app-stack>
-    <span>#129</span>
-    <span>{{ myDate | date: 'short' }}</span>
+    <span>{{ register.id }}</span>
+    <span>{{ register.date | date: 'short' }}</span>
   </app-stack>
 
   <app-stack gap="XL" [allowWrap]="true">
     <section>
       <h5>{{ 'VISUALIZATION.SIMULATION_REGISTER.PATIENTS.TITLE' | translate }}</h5>
-      <app-list type="INLINE" [items]="foo"></app-list>
+      <app-list
+        type="INLINE"
+        [items]="
+          register.patients
+            | objectTranslateIds: { category: 'PATIENTS', consider: 'KEYS' }
+            | translateObject: 'KEYS'
+            | listItem
+        "
+      ></app-list>
     </section>
 
     <section>
       <h5>{{ 'VISUALIZATION.SIMULATION_REGISTER.DRUGS.TITLE' | translate }}</h5>
-      <app-list type="INLINE" [items]="foo"></app-list>
+      <app-list
+        [items]="register.drugs | listTranslateIds: 'DRUGS' | translateList | listItem"
+      ></app-list>
     </section>
 
     <section>
       <h5>{{ 'VISUALIZATION.SIMULATION_REGISTER.RESULTS.TITLE' | translate }}</h5>
-      <app-list type="INLINE" [items]="foo"></app-list>
+      <app-list
+        type="INLINE"
+        [items]="
+          register.results
+            | objectTranslateIds: { category: 'PATIENTS', consider: 'KEYS' }
+            | translateObject: 'KEYS'
+            | listItem
+        "
+      ></app-list>
     </section>
   </app-stack>
 </app-card>

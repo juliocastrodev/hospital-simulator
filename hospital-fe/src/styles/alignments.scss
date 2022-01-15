@@ -3,6 +3,7 @@ $alignments: (
   'end': end,
   'center': center,
   'spaced': space-between,
+  'stretched': stretched,
 );
 
 @function alignment($name) {

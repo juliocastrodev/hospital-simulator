@@ -1,11 +1,10 @@
 <app-card>
-  <app-stack direction="VERTICAL" gap="M">
+  <app-stack direction="VERTICAL" gap="M" align="STRETCHED">
     <h3>{{ 'VISUALIZATION.HISTORIC.TITLE' | translate }}</h3>
 
-    <app-simulation-register></app-simulation-register>
-    <app-simulation-register></app-simulation-register>
-    <app-simulation-register></app-simulation-register>
-    <app-simulation-register></app-simulation-register>
-    <app-simulation-register></app-simulation-register>
+    <app-simulation-register
+      *ngFor="let register of registers"
+      [register]="register"
+    ></app-simulation-register>
   </app-stack>
 </app-card>

@@ -1,6 +1,6 @@
 <ul>
   <li *ngFor="let item of items">
     <p>{{ item.primary }}</p>
-    <span>{{ item.secondary }}</span>
+    <span *ngIf="item.secondary">{{ item.secondary }}</span>
   </li>
 </ul>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
+import { SimulationRegister } from '../../domain/SimulationRegister'
 
 @Component({
   selector: 'app-simulation-register',
@@ -6,31 +7,5 @@ import { Component } from '@angular/core'
   styleUrls: ['./simulation-register.component.scss'],
 })
 export class SimulationRegisterComponent {
-  myDate = new Date()
-  foo = [
-    {
-      primary: 'D',
-      secondary: '2',
-    },
-    {
-      primary: 'T',
-      secondary: '2',
-    },
-    {
-      primary: 'T',
-      secondary: '2',
-    },
-    {
-      primary: 'T',
-      secondary: '2',
-    },
-    {
-      primary: 'T',
-      secondary: '2',
-    },
-    {
-      primary: 'T',
-      secondary: '2',
-    },
-  ]
+  @Input() register!: SimulationRegister
 }
