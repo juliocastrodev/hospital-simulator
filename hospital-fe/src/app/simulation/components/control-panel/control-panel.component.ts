@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Observable, Subscription } from 'rxjs'
-import { Drug } from '../../../shared/domain/drugs/Drug'
-import { DrugRepository } from '../../../shared/domain/drugs/DrugRepository'
-import { PatientRepository } from '../../../shared/domain/patients/PatientRepository'
-import { PatientsRegister } from '../../../shared/domain/patients/PatientsRegister'
+import { Drug } from '../../../shared/domain/Drug'
+import { DrugSimulator } from '../../../shared/domain/DrugSimulator'
+import { PatientsRegister } from '../../../shared/domain/PatientsRegister'
+import { DrugRepository } from '../../domain/DrugRepository'
+import { PatientRepository } from '../../domain/PatientRepository'
 
 @Component({
   selector: 'app-control-panel',
@@ -11,20 +12,26 @@ import { PatientsRegister } from '../../../shared/domain/patients/PatientsRegist
   styleUrls: ['./control-panel.component.scss'],
 })
 export class ControlPanelComponent implements OnInit, OnDestroy {
-  drugs$: Observable<Drug[]>
-  patientsRegister$: Observable<PatientsRegister>
+  drugs: Drug[] = []
+  patientsRegister: PatientsRegister = {}
 
   subscription = new Subscription()
 
   constructor(
     private readonly drugRepository: DrugRepository,
-    private readonly patientRepository: PatientRepository
-  ) {
-    this.drugs$ = this.drugRepository.getAll()
-    this.patientsRegister$ = this.patientRepository.getPatientsRegister()
-  }
+    private readonly patientRepository: PatientRepository,
+    private readonly drugSimulator: DrugSimulator
+  ) {}
 
   ngOnInit() {
+    const getDrugsSub = this.drugRepository.getAll().subscribe((drugs) => (this.drugs = drugs))
+    this.subscription.add(getDrugsSub)
+
+    const getPatientsRegisterSub = this.patientRepository
+      .getPatientsRegister()
+      .subscribe((patientsRegister) => (this.patientsRegister = patientsRegister))
+    this.subscription.add(getPatientsRegisterSub)
+
     this.fetchDrugs()
     this.fetchPatientsRegister()
   }
@@ -34,10 +41,19 @@ export class ControlPanelComponent implements OnInit, OnDestroy {
   }
 
   fetchDrugs() {
-    this.subscription.add(this.drugRepository.fetch().subscribe())
+    const fetchDrugsSub = this.drugRepository.fetch().subscribe()
+    this.subscription.add(fetchDrugsSub)
   }
 
   fetchPatientsRegister() {
-    this.subscription.add(this.patientRepository.fetchPatientsRegister().subscribe())
+    const fetchPatientsRegisterSub = this.patientRepository.fetchPatientsRegister().subscribe()
+    this.subscription.add(fetchPatientsRegisterSub)
+  }
+
+  simulate() {
+    const drugSimulationSub = this.drugSimulator
+      .simulate(this.patientsRegister, this.drugs)
+      .subscribe()
+    this.subscription.add(drugSimulationSub)
   }
 }

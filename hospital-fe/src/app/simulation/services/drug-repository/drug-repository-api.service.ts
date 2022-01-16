@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
-import { Drug } from '../../domain/drugs/Drug'
-import { DrugRepository } from '../../domain/drugs/DrugRepository'
+import { Drug } from '../../../shared/domain/Drug'
+import { DrugRepository } from '../../domain/DrugRepository'
 import { environment } from '../../../../environments/environment'
 
 // The number of drugs is indeterminate

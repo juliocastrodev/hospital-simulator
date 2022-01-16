@@ -1,10 +1,16 @@
-<app-card>
+<app-card *ngIf="history$ | async as history">
   <app-stack direction="VERTICAL" gap="M" align="STRETCHED">
     <h3>{{ 'VISUALIZATION.HISTORIC.TITLE' | translate }}</h3>
 
-    <app-simulation-register
-      *ngFor="let register of registers"
-      [register]="register"
-    ></app-simulation-register>
+    <p *ngIf="!history.length; else registerList">
+      {{ 'VISUALIZATION.HISTORIC.EMPTY' | translate }}
+    </p>
+
+    <ng-template #registerList>
+      <app-simulation-register
+        *ngFor="let register of history"
+        [register]="register"
+      ></app-simulation-register>
+    </ng-template>
   </app-stack>
 </app-card>

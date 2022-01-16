@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { SimulationRegister } from '../../domain/SimulationRegister'
+import { SimulationRegister } from '../../../shared/domain/SimulationRegister'
 
 @Component({
   selector: 'app-simulation-register',

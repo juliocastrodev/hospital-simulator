@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 import { environment } from '../../../../environments/environment'
-import { PatientRepository } from '../../domain/patients/PatientRepository'
-import { PatientsRegister } from '../../domain/patients/PatientsRegister'
-import { PatientState } from '../../domain/patients/PatientState'
+import { PatientsRegister } from '../../../shared/domain/PatientsRegister'
+import { PatientState } from '../../../shared/domain/PatientState'
+import { PatientRepository } from '../../domain/PatientRepository'
 
 // The number of patient states is indeterminate and there may be repeated states
 type PatientsRegisterResponse = `${PatientState},${PatientState}`

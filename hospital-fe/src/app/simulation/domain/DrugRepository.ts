@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs'
-import { Drug } from './Drug'
+import { Drug } from '../../shared/domain/Drug'
 
 export abstract class DrugRepository {
   abstract fetch(): Observable<Drug[]>
