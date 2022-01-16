@@ -24,7 +24,8 @@
     "nanoid": "^3.1.32",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "hospital-lib": "file:../hospital-lib/dist"
   },
   "devDependencies": {
     "@angular-builders/jest": "latest",

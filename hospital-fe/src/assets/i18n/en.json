@@ -5,6 +5,7 @@
   "DRUGS.AN": "Antibiotic",
   "DRUGS.I": "Insulin",
   "DRUGS.P": "Paracetamol",
+  "LIST.EMPTY": "No items",
   "PATIENTS.F": "Fever",
   "PATIENTS.H": "Healthy",
   "PATIENTS.D": "Diabetes",

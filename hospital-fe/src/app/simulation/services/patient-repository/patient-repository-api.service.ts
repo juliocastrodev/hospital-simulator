@@ -8,7 +8,7 @@ import { PatientState } from '../../../shared/domain/PatientState'
 import { PatientRepository } from '../../domain/PatientRepository'
 
 // The number of patient states is indeterminate and there may be repeated states
-type PatientsRegisterResponse = `${PatientState},${PatientState}`
+type PatientsRegisterResponse = `${PatientState},${PatientState}` | ''
 
 @Injectable()
 export class PatientRepositoryApiService implements PatientRepository {
@@ -21,6 +21,8 @@ export class PatientRepositoryApiService implements PatientRepository {
 
     return this.http.get<PatientsRegisterResponse>(`${baseUrl}/patients`).pipe(
       map((response) => {
+        if (response === '') return {}
+
         const patientsRegister: PatientsRegister = {}
 
         response

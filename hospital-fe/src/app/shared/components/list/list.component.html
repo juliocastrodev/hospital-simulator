@@ -1,6 +1,10 @@
-<ul>
+<ul *ngIf="items.length; else empty">
   <li *ngFor="let item of items; trackBy: itemIdentifer">
     <p>{{ item.primary }}</p>
     <span *ngIf="item.secondary">{{ item.secondary }}</span>
   </li>
 </ul>
+
+<ng-template #empty>
+  <p>{{ 'LIST.EMPTY' | translate }}</p>
+</ng-template>

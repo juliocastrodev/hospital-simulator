@@ -5,13 +5,22 @@ import { Drug } from '../../domain/Drug'
 import { DrugSimulator } from '../../domain/DrugSimulator'
 import { PatientsRegister } from '../../domain/PatientsRegister'
 import { SimulationRegister } from '../../domain/SimulationRegister'
+import { Quarantine, Drug as LibDrug } from 'hospital-lib'
 
 @Injectable()
 export class DrugSimulatorRealService implements DrugSimulator {
   private history$$ = new BehaviorSubject<SimulationRegister[]>([])
 
   simulate(patients: PatientsRegister, drugs: Drug[]): Observable<SimulationRegister> {
-    const register = SimulationRegister.create({ patients, drugs, results: patients })
+    const simulator = new Quarantine(patients)
+    simulator.setDrugs(drugs as LibDrug[])
+    simulator.wait40Days()
+
+    const register = SimulationRegister.create({
+      patients,
+      drugs,
+      results: simulator.report(),
+    })
 
     return of(register).pipe(
       tap(() => {
