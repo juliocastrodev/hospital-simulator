@@ -47,7 +47,7 @@ export class QuarantineTest {
   }
 
   @Test()
-  report_afterTreatmentWithAntibiotic_patientsWithTubercuolsisGetCuredAndTheRestStaysTheSameButDiabeticsDie() {
+  report_afterTreatmentWithAntibiotic_patientsWithTuberculosisGetCuredAndTheRestStaysTheSameButDiabeticsDie() {
     const quarantine = new Quarantine(ALL_ALIVE_BUT_WITH_DISEASES)
     quarantine.setDrugs([Drug.ANTIBIOTIC])
     quarantine.wait40Days()
@@ -106,7 +106,7 @@ export class QuarantineTest {
   }
 
   @Test()
-  report_afterTreatmentWithParacetamolAndAspirin_allPatiensDie() {
+  report_afterTreatmentWithParacetamolAndAspirin_allPatientsDie() {
     const quarantine = new Quarantine(ALL_ALIVE_BUT_WITH_DISEASES)
     quarantine.setDrugs([Drug.PARACETAMOL, Drug.ASPIRIN])
     quarantine.wait40Days()
