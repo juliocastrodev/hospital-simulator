@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let item of items">
+  <li *ngFor="let item of items; trackBy: itemIdentifer">
     <p>{{ item.primary }}</p>
     <span *ngIf="item.secondary">{{ item.secondary }}</span>
   </li>

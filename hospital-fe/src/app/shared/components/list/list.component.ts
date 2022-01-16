@@ -19,4 +19,8 @@ export class ListComponent {
 
     return classes
   }
+
+  itemIdentifer(itemIndex: number, item: ListItem) {
+    return `${itemIndex};${item.primary};${item.secondary}`
+  }
 }

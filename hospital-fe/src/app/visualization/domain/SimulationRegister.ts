@@ -1,5 +1,5 @@
-import { Drug } from '../../shared/domain/Drug'
-import { PatientsRegister } from '../../shared/domain/PatientsRegister'
+import { Drug } from '../../shared/domain/drugs/Drug'
+import { PatientsRegister } from '../../shared/domain/patients/PatientsRegister'
 
 export type SimulationRegister = {
   id: string

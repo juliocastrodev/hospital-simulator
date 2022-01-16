@@ -1,14 +1,21 @@
 import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
 import { TranslateModule } from '@ngx-translate/core'
+import { DrugRepositoryModule } from '../shared/services/drugs/drug-repository.module'
+import { PatientRepositoryModule } from '../shared/services/patients/patient-repository.module'
 import { SharedModule } from '../shared/shared.module'
 import { ControlPanelComponent } from './components/control-panel/control-panel.component'
 import { PanelListComponent } from './components/panel-list/panel-list.component'
 
-const components = [ControlPanelComponent, PanelListComponent]
-
 @NgModule({
-  imports: [SharedModule, TranslateModule],
-  declarations: [...components],
-  exports: [...components],
+  imports: [
+    SharedModule,
+    TranslateModule,
+    DrugRepositoryModule,
+    PatientRepositoryModule,
+    BrowserModule,
+  ],
+  declarations: [ControlPanelComponent, PanelListComponent],
+  exports: [ControlPanelComponent],
 })
 export class SimulationModule {}

@@ -14,7 +14,7 @@ export class HistoryComponent {
       id: '#123',
       date: new Date('2021/01/01'),
       patients: { F: 1, D: 4, X: 10 },
-      drugs: ['As', 'I'],
+      drugs: ['As', 'I', 'P'],
       results: { F: 1, D: 0, X: 14 },
     },
     {

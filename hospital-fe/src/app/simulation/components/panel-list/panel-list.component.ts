@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ListItem } from '../../../shared/components/list/ListItem'
 
 @Component({
@@ -10,4 +10,6 @@ export class PanelListComponent {
   @Input() title = ''
   @Input() items: ListItem[] = []
   @Input() button = ''
+
+  @Output() buttonclick = new EventEmitter()
 }

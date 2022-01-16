@@ -5,11 +5,9 @@ import { SharedModule } from '../shared/shared.module'
 import { HistoryComponent } from './components/history/history.component'
 import { SimulationRegisterComponent } from './components/simulation-register/simulation-register.component'
 
-const components = [HistoryComponent, SimulationRegisterComponent]
-
 @NgModule({
   imports: [SharedModule, BrowserModule, TranslateModule],
-  declarations: [...components],
-  exports: [...components],
+  declarations: [HistoryComponent, SimulationRegisterComponent],
+  exports: [HistoryComponent],
 })
 export class VisualizationModule {}

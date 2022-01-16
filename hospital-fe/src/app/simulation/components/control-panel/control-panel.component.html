@@ -7,6 +7,7 @@
     <section>
       <app-stack gap="XL" [allowWrap]="true">
         <app-panel-list
+          *ngIf="patientsRegister$ | async as patients"
           [title]="'SIMULATION.CONTROL_PANEL.PATIENTS.TITLE' | translate"
           [items]="
             patients
@@ -15,12 +16,15 @@
               | listItem
           "
           [button]="'SIMULATION.CONTROL_PANEL.PATIENTS.BUTTON' | translate"
+          (buttonclick)="fetchPatientsRegister()"
         ></app-panel-list>
 
         <app-panel-list
+          *ngIf="drugs$ | async as drugs"
           [title]="'SIMULATION.CONTROL_PANEL.DRUGS.TITLE' | translate"
           [items]="drugs | listTranslateIds: 'DRUGS' | translateList | listItem"
           [button]="'SIMULATION.CONTROL_PANEL.DRUGS.BUTTON' | translate"
+          (buttonclick)="fetchDrugs()"
         ></app-panel-list>
       </app-stack>
     </section>
