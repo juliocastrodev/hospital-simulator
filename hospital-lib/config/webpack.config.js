@@ -1,19 +1,21 @@
+// eslint-disable-next-line no-undef
 module.exports = {
-    entry: './src/index.ts',
-    output: {
-        filename: 'index.js',
-        library: 'hospitalLib',
-        libraryTarget: 'umd',
-        umdNamedDefine: true
-    },
-    resolve: {
-        extensions: ['.ts']
-    },
-    module: {
-        rules: [
-            {
-                test: /\.ts$/, loader: 'ts-loader'
-            }
-        ]
-    }
-};
+  entry: './src/index.ts',
+  output: {
+    filename: 'index.js',
+    library: 'hospitalLib',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
+  },
+  resolve: {
+    extensions: ['.ts'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+      },
+    ],
+  },
+}

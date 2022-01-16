@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, of } from 'rxjs'
-import { tap } from 'rxjs/operators'
+import { BehaviorSubject, Observable } from 'rxjs'
 import { SIMULATIONS } from '../../../utils/fixtures/simulations'
 import { Drug } from '../../domain/Drug'
 import { DrugSimulator } from '../../domain/DrugSimulator'
@@ -11,19 +10,15 @@ import { SimulationRegister } from '../../domain/SimulationRegister'
 export class DrugSimulatorFakeService implements DrugSimulator {
   private history$$ = new BehaviorSubject<SimulationRegister[]>(SIMULATIONS)
 
-  simulate(patients: PatientsRegister, drugs: Drug[]): Observable<SimulationRegister> {
+  simulate(patients: PatientsRegister, drugs: Drug[]) {
     const register = SimulationRegister.create({ patients, drugs, results: patients })
 
-    return of(register).pipe(
-      tap(() => {
-        const updatedHistory = [register, ...this.history$$.getValue()].slice(0, 10)
+    this.history$$.next([register, ...this.history$$.getValue()])
 
-        this.history$$.next(updatedHistory)
-      })
-    )
+    return register
   }
 
-  getHistory(): Observable<SimulationRegister[]> {
+  getHistory() {
     return this.history$$
   }
 }

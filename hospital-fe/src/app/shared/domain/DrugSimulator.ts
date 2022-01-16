@@ -4,6 +4,6 @@ import { PatientsRegister } from './PatientsRegister'
 import { SimulationRegister } from './SimulationRegister'
 
 export abstract class DrugSimulator {
-  abstract simulate(currentState: PatientsRegister, drugs: Drug[]): Observable<SimulationRegister>
+  abstract simulate(currentState: PatientsRegister, drugs: Drug[]): SimulationRegister
   abstract getHistory(): Observable<SimulationRegister[]>
 }

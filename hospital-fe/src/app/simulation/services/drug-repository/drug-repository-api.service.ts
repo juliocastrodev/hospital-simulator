@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
+import { BehaviorSubject, Subject } from 'rxjs'
+import { map, multicast, refCount, share, shareReplay, switchMap, tap } from 'rxjs/operators'
 import { Drug } from '../../../shared/domain/Drug'
 import { DrugRepository } from '../../domain/DrugRepository'
 import { environment } from '../../../../environments/environment'
@@ -11,24 +11,21 @@ type DrugsResponse = `${Drug},${Drug}` | ''
 
 @Injectable()
 export class DrugRepositoryApiService implements DrugRepository {
-  private drugs$$ = new BehaviorSubject<Drug[]>([])
-
   constructor(private readonly http: HttpClient) {}
 
+  private triggerFetchDrugs$$ = new BehaviorSubject<void>(undefined)
+
+  private fetchDrugs$ = this.triggerFetchDrugs$$.pipe(
+    switchMap(() => this.http.get<DrugsResponse>(`${environment.baseUrl}/drugs`)),
+    map((response) => (response === '' ? [] : response.split(','))),
+    share()
+  )
+
   fetch() {
-    const { baseUrl } = environment
-
-    return this.http.get<DrugsResponse>(`${baseUrl}/drugs`).pipe(
-      map((response) => {
-        if (response === '') return []
-
-        return response.split(',').map((drugCode) => drugCode.trim() as Drug)
-      }),
-      tap((drugs) => this.drugs$$.next(drugs))
-    )
+    this.triggerFetchDrugs$$.next()
   }
 
   getAll() {
-    return this.drugs$$
+    return this.fetchDrugs$
   }
 }

@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs'
-import { PatientsRegister } from '../../shared/domain/PatientsRegister';
+import { PatientsRegister } from '../../shared/domain/PatientsRegister'
 
 export abstract class PatientRepository {
-  abstract fetchPatientsRegister(): Observable<PatientsRegister>
+  abstract fetchPatientsRegister(): void
   abstract getPatientsRegister(): Observable<PatientsRegister>
 }

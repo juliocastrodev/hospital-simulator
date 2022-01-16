@@ -8,8 +8,8 @@ import { PatientRepository } from '../../domain/PatientRepository'
 export class PatientRepositoryFakeService implements PatientRepository {
   private patientsRegister$$ = new BehaviorSubject<PatientsRegister>(PATIENTS_REGISTER)
 
-  fetchPatientsRegister(): Observable<PatientsRegister> {
-    return this.patientsRegister$$
+  fetchPatientsRegister() {
+    this.patientsRegister$$.next({ ...this.patientsRegister$$.getValue() })
   }
 
   getPatientsRegister(): Observable<PatientsRegister> {

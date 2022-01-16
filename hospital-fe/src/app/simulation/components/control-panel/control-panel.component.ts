@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { Observable, Subscription } from 'rxjs'
+import { Subscription } from 'rxjs'
 import { Drug } from '../../../shared/domain/Drug'
 import { DrugSimulator } from '../../../shared/domain/DrugSimulator'
 import { PatientsRegister } from '../../../shared/domain/PatientsRegister'
@@ -31,9 +31,6 @@ export class ControlPanelComponent implements OnInit, OnDestroy {
       .getPatientsRegister()
       .subscribe((patientsRegister) => (this.patientsRegister = patientsRegister))
     this.subscription.add(getPatientsRegisterSub)
-
-    this.fetchDrugs()
-    this.fetchPatientsRegister()
   }
 
   ngOnDestroy() {
@@ -41,19 +38,14 @@ export class ControlPanelComponent implements OnInit, OnDestroy {
   }
 
   fetchDrugs() {
-    const fetchDrugsSub = this.drugRepository.fetch().subscribe()
-    this.subscription.add(fetchDrugsSub)
+    this.drugRepository.fetch()
   }
 
   fetchPatientsRegister() {
-    const fetchPatientsRegisterSub = this.patientRepository.fetchPatientsRegister().subscribe()
-    this.subscription.add(fetchPatientsRegisterSub)
+    this.patientRepository.fetchPatientsRegister()
   }
 
   simulate() {
-    const drugSimulationSub = this.drugSimulator
-      .simulate(this.patientsRegister, this.drugs)
-      .subscribe()
-    this.subscription.add(drugSimulationSub)
+    this.drugSimulator.simulate(this.patientsRegister, this.drugs)
   }
 }

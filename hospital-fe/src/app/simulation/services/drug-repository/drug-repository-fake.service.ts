@@ -9,7 +9,7 @@ export class DrugRepositoryFakeService implements DrugRepository {
   private drugs$$ = new BehaviorSubject<Drug[]>(DRUGS)
 
   fetch() {
-    return this.drugs$$
+    this.drugs$$.next([...this.drugs$$.getValue()])
   }
 
   getAll() {

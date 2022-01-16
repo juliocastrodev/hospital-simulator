@@ -33,7 +33,7 @@ export class PatientsRegisterBuilder {
     const { from, to } = params
 
     if (from !== to) {
-      this.built[to] = (this.built[from] ?? 0) + (this.built[to] ?? 0)
+      this.built[to] = (this.built[to] ?? 0) + (this.built[from] ?? 0)
       this.built[from] = 0
     }
 
