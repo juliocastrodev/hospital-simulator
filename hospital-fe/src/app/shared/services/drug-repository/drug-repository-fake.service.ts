@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, of } from 'rxjs'
+import { BehaviorSubject, of } from 'rxjs'
 import { tap } from 'rxjs/operators'
 import { Drug } from '../../domain/drugs/Drug'
 import { DrugRepository } from '../../domain/drugs/DrugRepository'

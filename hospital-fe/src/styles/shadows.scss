@@ -1,6 +1,7 @@
 $shadows: (
   'dark': 15px 26px 27px -15px rgba(0, 0, 0, 0.1),
   'light': 0px 18px 40px rgba(112, 144, 176, 0.12),
+  'blue': 0 0 0 5px rgba(21, 156, 228, 0.4),
 );
 
 @function shadow($name) {
