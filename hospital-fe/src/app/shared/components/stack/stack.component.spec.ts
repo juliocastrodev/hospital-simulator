@@ -1,7 +1,23 @@
 import { render } from '@testing-library/angular'
+import { screen } from '@testing-library/dom'
 import { StackComponent } from './stack.component'
 
 describe('StackComponent', () => {
+  it('projects its content', async () => {
+    await render(
+      `
+    <app-stack>
+      <div>First</div>
+      <div>Second</div>
+    </app-stack>
+    `,
+      { declarations: [StackComponent] }
+    )
+
+    expect(screen.getByText('First')).toBeInTheDocument()
+    expect(screen.getByText('Second')).toBeInTheDocument()
+  })
+
   describe('when no props are provided', () => {
     it('includes default classes: direction-horizontal, justify-spaced and align-center', async () => {
       const { container } = await render(StackComponent)
