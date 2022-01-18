@@ -9,7 +9,6 @@ import { VisualizationModule } from './visualization/visualization.module'
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, SharedModule, SimulationModule, VisualizationModule, I18NModule],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

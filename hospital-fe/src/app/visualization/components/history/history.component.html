@@ -1,9 +1,9 @@
 <app-card *ngIf="history$ | async as history">
   <app-stack direction="VERTICAL" gap="M" align="STRETCHED">
-    <h3>{{ 'VISUALIZATION.HISTORIC.TITLE' | translate }}</h3>
+    <h3>{{ 'VISUALIZATION.HISTORY.TITLE' | translate }}</h3>
 
     <p *ngIf="!history.length; else registerList">
-      {{ 'VISUALIZATION.HISTORIC.EMPTY' | translate }}
+      {{ 'VISUALIZATION.HISTORY.EMPTY' | translate }}
     </p>
 
     <ng-template #registerList>

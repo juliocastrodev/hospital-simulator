@@ -17,8 +17,8 @@
   "SIMULATION.CONTROL_PANEL.PATIENTS.BUTTON": "Fetch patients",
   "SIMULATION.CONTROL_PANEL.PATIENTS.TITLE": "Patients",
   "SIMULATION.CONTROL_PANEL.TITLE": "Control Panel",
-  "VISUALIZATION.HISTORIC.TITLE": "History",
-  "VISUALIZATION.HISTORIC.EMPTY": "No registers found. Please use the simulation options of the control panel",
+  "VISUALIZATION.HISTORY.TITLE": "History",
+  "VISUALIZATION.HISTORY.EMPTY": "No registers found. Please use the simulation options of the control panel",
   "VISUALIZATION.SIMULATION_REGISTER.DRUGS.TITLE": "Drugs",
   "VISUALIZATION.SIMULATION_REGISTER.PATIENTS.TITLE": "Patients",
   "VISUALIZATION.SIMULATION_REGISTER.RESULTS.TITLE": "Results"
