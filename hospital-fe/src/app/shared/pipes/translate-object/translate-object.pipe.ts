@@ -1,9 +1,9 @@
-import { Pipe, PipeTransform } from '@angular/core'
+import { Pipe } from '@angular/core'
 import { TranslatePipe } from '@ngx-translate/core'
 import { ObjectPart } from './ObjectPart'
 
 @Pipe({ name: 'translateObject', pure: false })
-export class TranslateObjectPipe extends TranslatePipe implements PipeTransform {
+export class TranslateObjectPipe extends TranslatePipe {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transform(obj: any, consider: ObjectPart): Record<string, string> {
     if (Object(obj) !== obj) throw new Error('translateObject pipe can only be used with objects')

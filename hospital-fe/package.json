@@ -21,11 +21,11 @@
     "@angular/router": "~12.2.0",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "hospital-lib": "file:../hospital-lib/dist",
     "nanoid": "^3.1.32",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4",
-    "hospital-lib": "file:../hospital-lib/dist"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-builders/jest": "latest",
@@ -36,7 +36,6 @@
     "@testing-library/angular": "^11.0.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@types/jest": "latest",
-    "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",
     "eslint": "^8.6.0",
