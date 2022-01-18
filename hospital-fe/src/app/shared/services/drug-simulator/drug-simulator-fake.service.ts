@@ -13,7 +13,9 @@ export class DrugSimulatorFakeService implements DrugSimulator {
   simulate(patients: PatientsRegister, drugs: Drug[]) {
     const register = SimulationRegister.create({ patients, drugs, results: patients })
 
-    this.history$$.next([register, ...this.history$$.getValue()])
+    this.history$$.next(
+      [register, ...this.history$$.getValue()].slice(0, DrugSimulator.HISTORY_MAX_LENGTH)
+    )
 
     return register
   }
