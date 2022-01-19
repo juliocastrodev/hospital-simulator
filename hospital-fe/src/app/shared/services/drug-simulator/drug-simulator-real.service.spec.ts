@@ -1,5 +1,7 @@
 import { Quarantine } from 'hospital-lib'
 import { Subscription } from 'rxjs'
+import { DRUGS, ONLY_PARACETAMOL } from '../../../utils/fixtures/drugs'
+import { ALL_HEALTHY, PATIENTS_REGISTER } from '../../../utils/fixtures/patients'
 import { DrugSimulator } from '../../domain/DrugSimulator'
 import { SimulationRegister } from '../../domain/SimulationRegister'
 import { DrugSimulatorRealService } from './drug-simulator-real.service'
@@ -47,9 +49,8 @@ describe('DrugSimulatorRealService', () => {
 
         beforeEach(() => {
           currentHistory = []
-          for (let i = 0; i < DrugSimulator.HISTORY_MAX_LENGTH - 2; i++) {
+          for (let i = 0; i < DrugSimulator.HISTORY_MAX_LENGTH - 2; i++)
             currentHistory.unshift(service.simulate({}, []))
-          }
         })
 
         it('adds the register to the history keeping all old registers', () => {
@@ -65,9 +66,8 @@ describe('DrugSimulatorRealService', () => {
 
         beforeEach(() => {
           currentHistory = []
-          for (let i = 0; i < DrugSimulator.HISTORY_MAX_LENGTH; i++) {
+          for (let i = 0; i < DrugSimulator.HISTORY_MAX_LENGTH; i++)
             currentHistory.unshift(service.simulate({}, []))
-          }
         })
 
         it('adds the register to the history removing oldest one', () => {
@@ -88,13 +88,13 @@ describe('DrugSimulatorRealService', () => {
       const currentDate = new Date('2022/01/10')
       jest.setSystemTime(currentDate)
 
-      const result = service.simulate({ F: 1 }, ['As'])
+      const result = service.simulate(PATIENTS_REGISTER, ONLY_PARACETAMOL)
 
       expect(result).toEqual({
         id: expect.any(String),
         date: currentDate,
-        patients: expect.any(Object),
-        drugs: expect.any(Array),
+        patients: PATIENTS_REGISTER,
+        drugs: ONLY_PARACETAMOL,
         results: expect.any(Object),
       })
     })
@@ -102,14 +102,14 @@ describe('DrugSimulatorRealService', () => {
     it('uses hospital-lib with correct params', () => {
       const setDrugsSpy = jest.spyOn(Quarantine.prototype, 'setDrugs')
       const wait40DaysSpy = jest.spyOn(Quarantine.prototype, 'wait40Days')
-      const reportSpy = jest.spyOn(Quarantine.prototype, 'report').mockReturnValue({ H: 10 })
+      const reportSpy = jest.spyOn(Quarantine.prototype, 'report').mockReturnValue(ALL_HEALTHY)
 
-      const output = service.simulate({ F: 1, D: 3 }, ['As', 'I'])
+      const output = service.simulate(PATIENTS_REGISTER, DRUGS)
 
-      expect(setDrugsSpy).toHaveBeenCalledWith(['As', 'I'])
+      expect(setDrugsSpy).toHaveBeenCalledWith(DRUGS)
       expect(wait40DaysSpy).toHaveBeenCalled()
       expect(reportSpy).toHaveBeenCalled()
-      expect(output.results).toEqual({ H: 10 })
+      expect(output.results).toEqual(ALL_HEALTHY)
     })
   })
 })

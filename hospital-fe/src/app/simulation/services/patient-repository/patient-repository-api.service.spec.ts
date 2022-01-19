@@ -76,7 +76,7 @@ describe('PatientRepositoryApiService', () => {
             mockHttp.get.mockReturnValue(of('F,H,X'))
           })
 
-          it('emits the register with a 1 count for every patient state', () => {
+          it('emits the register with count=1 for every patient state', () => {
             let emitted
 
             subscription.add(
@@ -108,7 +108,7 @@ describe('PatientRepositoryApiService', () => {
     })
 
     describe('fetchPatientsRegister', () => {
-      it('triggers a single http request every time it is called, regardless of the number of suscribers', async () => {
+      it('triggers a http request every time it is called, regardless of the number of suscribers', async () => {
         subscription.add(service.getPatientsRegister().subscribe())
         subscription.add(service.getPatientsRegister().subscribe())
         subscription.add(service.getPatientsRegister().subscribe())

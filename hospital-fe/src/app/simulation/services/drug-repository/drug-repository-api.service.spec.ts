@@ -87,7 +87,7 @@ describe('DrugRepositoryApiService', () => {
     })
 
     describe('fetch', () => {
-      it('triggers a single http request every time it is called, regardless of the number of suscribers', async () => {
+      it('triggers a http request every time it is called, regardless of the number of suscribers', async () => {
         subscription.add(service.getAll().subscribe())
         subscription.add(service.getAll().subscribe())
         subscription.add(service.getAll().subscribe())

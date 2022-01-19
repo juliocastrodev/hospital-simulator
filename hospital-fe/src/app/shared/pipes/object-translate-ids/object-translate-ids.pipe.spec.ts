@@ -43,7 +43,7 @@ describe('ObjectTranslateIdsPipe', () => {
     })
   })
 
-  describe('when considering value', () => {
+  describe('when considering values', () => {
     let params: PipeParams
 
     beforeEach(() => {
@@ -92,7 +92,7 @@ describe('ObjectTranslateIdsPipe', () => {
     })
 
     describe('and input is not empty', () => {
-      it('builds translate ids both for keys and values', () => {
+      it('builds translate ids for both keys and values', () => {
         const output = pipe.transform(
           { number: 1, string: 'one', object: { one: 1 }, boolean: true, array: [1, 2, 3, 4] },
           params

@@ -15,7 +15,7 @@ export class PatientsRegisterBuilderTest {
   }
 
   @Test()
-  build_fromExistingRegisterButwithNoInteractions_retrievesSameRegister() {
+  build_fromExistingRegisterButWithNoInteractions_retrievesSameRegister() {
     const builder = new PatientsRegisterBuilder().from(ALL_ALIVE_BUT_WITH_DISEASES)
 
     const register = builder.build()
@@ -24,7 +24,7 @@ export class PatientsRegisterBuilderTest {
   }
 
   @Test()
-  build_usingDeceaseOnSpecificPatients_marksThemAsDied() {
+  build_usingDeceaseOnSpecificPatients_marksThemAsDead() {
     const builder = new PatientsRegisterBuilder()
       .from({
         [PatientState.HEALTH]: 10,
@@ -42,7 +42,7 @@ export class PatientsRegisterBuilderTest {
   }
 
   @Test()
-  build_usingDeceaseAll_marksAllPatientsAsDied() {
+  build_usingDeceaseAll_marksAllPatientsAsDead() {
     const builder = new PatientsRegisterBuilder()
       .from({
         [PatientState.HEALTH]: 10,

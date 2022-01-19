@@ -11,7 +11,7 @@ import { SimulationRegister } from '../../../shared/domain/SimulationRegister'
 export class HistoryComponent {
   history$: Observable<SimulationRegister[]>
 
-  constructor(public readonly drugsSimulator: DrugSimulator) {
+  constructor(private readonly drugsSimulator: DrugSimulator) {
     this.history$ = drugsSimulator.getHistory()
   }
 }

@@ -37,6 +37,16 @@ describe('StackComponent', () => {
       })
     })
 
+    describe('and we want to specify elements gap', () => {
+      it('includes the corresponding gap class', async () => {
+        const { container } = await render(StackComponent, {
+          componentProperties: { gap: 'XL' },
+        })
+
+        expect(container).toHaveClass('gap-xl')
+      })
+    })
+
     describe('and we want to specify elements direction', () => {
       it('includes the corresponding direction class', async () => {
         const { container } = await render(StackComponent, {
@@ -73,11 +83,12 @@ describe('StackComponent', () => {
           componentProperties: {
             allowWrap: true,
             align: 'END',
+            gap: 'S',
             direction: 'VERTICAL',
           },
         })
 
-        expect(container).toHaveClass('wrap', 'align-end', 'direction-vertical')
+        expect(container).toHaveClass('wrap', 'align-end', 'gap-s', 'direction-vertical')
       })
     })
   })

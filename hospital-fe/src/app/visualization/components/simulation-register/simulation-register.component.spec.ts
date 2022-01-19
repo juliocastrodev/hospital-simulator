@@ -22,6 +22,15 @@ describe('SimulationRegisterComponent', () => {
   })
 
   describe('when a simulation register is provided', () => {
+    it('displays the 3 sections of the register: patients, drugs and results', async () => {
+      await renderComp({ componentProperties: { register: JANUARY_FIRST } })
+
+      expectIdentifierSectionIsDisplayed(JANUARY_FIRST)
+      expectPatientsSectionIsDisplayed(JANUARY_FIRST)
+      expectDrugsSectionIsDisplayed(JANUARY_FIRST)
+      expectResultsSectionIsDisplayed(JANUARY_FIRST)
+    })
+
     const expectIdentifierSectionIsDisplayed = (register: SimulationRegister) => {
       expect(screen.getByText(register.id)).toBeInTheDocument()
 
@@ -62,14 +71,5 @@ describe('SimulationRegisterComponent', () => {
         expect(within(resultsSection).getAllByText(count)[0]).toBeInTheDocument()
       })
     }
-
-    it('displays the 3 sections of the register: patients, drugs and results', async () => {
-      await renderComp({ componentProperties: { register: JANUARY_FIRST } })
-
-      expectIdentifierSectionIsDisplayed(JANUARY_FIRST)
-      expectPatientsSectionIsDisplayed(JANUARY_FIRST)
-      expectDrugsSectionIsDisplayed(JANUARY_FIRST)
-      expectResultsSectionIsDisplayed(JANUARY_FIRST)
-    })
   })
 })
