@@ -8,11 +8,23 @@ import { DrugRepository } from '../../domain/DrugRepository'
 export class DrugRepositoryFakeService implements DrugRepository {
   private drugs$$ = new BehaviorSubject<Drug[]>(DRUGS)
 
+  private nextDrugs?: Drug[]
+
   fetch() {
-    this.drugs$$.next([...this.drugs$$.getValue()])
+    const nextDrugs = this.nextDrugs ?? this.drugs$$.getValue()
+
+    this.drugs$$.next(nextDrugs)
   }
 
   getAll() {
     return this.drugs$$
+  }
+
+  cleanDrugs() {
+    this.drugs$$.next([])
+  }
+
+  setNextDrugs(drugs: Drug[]) {
+    this.nextDrugs = drugs
   }
 }

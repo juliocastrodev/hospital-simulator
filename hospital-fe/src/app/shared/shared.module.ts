@@ -10,7 +10,7 @@ import { TranslateListPipe } from './pipes/translate-list/translate-list.pipe'
 import { ListTranslateIdsPipe } from './pipes/list-translate-ids/list-translate-ids.pipe'
 import { ObjectTranslateIdsPipe } from './pipes/object-translate-ids/object-translate-ids.pipe'
 import { TranslateObjectPipe } from './pipes/translate-object/translate-object.pipe'
-import { TranslateModule } from '@ngx-translate/core'
+import { I18NModule } from '../config/i18n.module'
 
 const components = [CardComponent, ButtonComponent, ListComponent, StackComponent]
 
@@ -26,7 +26,7 @@ const pipes = [
 const providers = [TranslateIdPipe]
 
 @NgModule({
-  imports: [BrowserModule, TranslateModule],
+  imports: [BrowserModule, I18NModule],
   declarations: [...components, ...pipes],
   providers: [...providers],
   exports: [...components, ...pipes],

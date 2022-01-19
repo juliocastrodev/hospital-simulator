@@ -10,17 +10,32 @@ import { SimulationRegister } from '../../domain/SimulationRegister'
 export class DrugSimulatorFakeService implements DrugSimulator {
   private history$$ = new BehaviorSubject<SimulationRegister[]>(SIMULATIONS)
 
+  private nextResult?: SimulationRegister
+
   simulate(patients: PatientsRegister, drugs: Drug[]) {
-    const register = SimulationRegister.create({ patients, drugs, results: patients })
+    const result =
+      this.nextResult ?? SimulationRegister.create({ patients, drugs, results: patients })
 
     this.history$$.next(
-      [register, ...this.history$$.getValue()].slice(0, DrugSimulator.HISTORY_MAX_LENGTH)
+      [result, ...this.history$$.getValue()].slice(0, DrugSimulator.HISTORY_MAX_LENGTH)
     )
 
-    return register
+    return result
   }
 
   getHistory() {
     return this.history$$
+  }
+
+  cleanHistory() {
+    this.history$$.next([])
+  }
+
+  getRegisters() {
+    return this.history$$.getValue()
+  }
+
+  setNextSimulationResult(result: SimulationRegister) {
+    this.nextResult = result
   }
 }

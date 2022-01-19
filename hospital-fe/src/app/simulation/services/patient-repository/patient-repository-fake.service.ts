@@ -8,11 +8,23 @@ import { PatientRepository } from '../../domain/PatientRepository'
 export class PatientRepositoryFakeService implements PatientRepository {
   private patientsRegister$$ = new BehaviorSubject<PatientsRegister>(PATIENTS_REGISTER)
 
+  private nextPatientsRegister?: PatientsRegister
+
   fetchPatientsRegister() {
-    this.patientsRegister$$.next({ ...this.patientsRegister$$.getValue() })
+    const nextRegister = this.nextPatientsRegister ?? this.patientsRegister$$.getValue()
+
+    this.patientsRegister$$.next(nextRegister)
   }
 
   getPatientsRegister(): Observable<PatientsRegister> {
     return this.patientsRegister$$
+  }
+
+  cleanPatientsRegister() {
+    this.patientsRegister$$.next({})
+  }
+
+  setNextPatientsRegister(register: PatientsRegister) {
+    this.nextPatientsRegister = register
   }
 }

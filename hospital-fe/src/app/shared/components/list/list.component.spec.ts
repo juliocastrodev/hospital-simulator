@@ -3,8 +3,8 @@ import { render, RenderComponentOptions } from '@testing-library/angular'
 import { ListComponent } from './list.component'
 
 describe('ListComponent', () => {
-  const renderList = async (options?: RenderComponentOptions<ListComponent>) =>
-    await render(ListComponent, {
+  const renderList = (options?: RenderComponentOptions<ListComponent>) =>
+    render(ListComponent, {
       imports: [TranslateModule.forRoot()],
       ...options,
     })
