@@ -19,6 +19,10 @@ export class Quarantine {
   wait40Days() {
     const builder = new PatientsRegisterBuilder().from(this.patientsRegister)
 
+    patientStatesFrom(this.patientsRegister).map((patientState) =>
+      Quarantine.DRUGS_EFFECT_SIMULATOR.simulate(patientState, this.drugs)
+    )
+
     patientStatesFrom(this.patientsRegister).forEach((patientState) => {
       const nextState = Quarantine.DRUGS_EFFECT_SIMULATOR.simulate(patientState, this.drugs)
 
